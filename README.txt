@@ -1,0 +1,5 @@
+Unser Projekt ist eine Webanwendung, die es Benutzern ermöglicht, eine Liste von Rezepten zu verwalten und zu organisieren. Wir haben uns entschieden, die Spoonacular Recipe API als öffentliche API zu verwenden, um Rezepte von verschiedenen Websites und Blogs zu importieren und dem Benutzer anzuzeigen.
+Die Webanwendung enthält Funktionen wie das Hinzufügen von eigenen Rezepten, das Speichern von Rezepten in verschiedenen Kategorien oder Listen, das Ausdrucken von Rezepten und das Markieren von Rezepten als Favoriten. Benutzer können auch Kommentare zu Rezepten hinzufügen und diese mit anderen Benutzern teilen.
+Wir haben Use Case Diagramme für die wichtigsten 5 Usecases erstellt und Wireframes und ein Klassendiagramm erstellt, um den Entwicklungsprozess zu planen.
+Alle Teammitglieder sind am Projekt beteiligt und wir werden während des Entwicklungsprozesses regelmäßig Commits durchführen, um den Fortschritt zu verfolgen.
+Wir hoffen, dass unsere Webanwendung Benutzern dabei helfen wird, ihre Rezeptsammlung zu organisieren und zu verwalten, und dass sie die Möglichkeit haben, Rezepte mit anderen Benutzern zu teilen und zu kommentieren.
