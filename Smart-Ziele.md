@@ -8,4 +8,4 @@
 ​
 **R** elevantes Ziel: Füge Kommentarfunktionen hinzu, um es Benutzern zu ermöglichen, ihre Meinungen und Erfahrungen mit anderen Benutzern zu teilen.
 ​
-**T** erminiertes Ziel: Entwickle die Webanwendung innerhalb von 3 Monaten und stelle sie Benutzern zur Verfügung.
+**T** erminiertes Ziel: Entwickle die Webanwendung innerhalb von einer Woche und stelle sie Benutzern zur Verfügung.
