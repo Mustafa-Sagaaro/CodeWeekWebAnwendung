@@ -62,5 +62,3 @@ function randomizeRezepte() {
       document.getElementById("rezepte").innerHTML = output;
     });
 }
-
-

@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Entdecke Rezepte</title>
+<script>
+    const API_URL = "https://www.themealdb.com/api/json/v1/1/search.php?s={searchTerm}";
+
+    function renderData(data) {
+        const container = document.getElementById('container');
+        let html = '';
+        data.meals.forEach(meal => {
+            html += `
+            <div class="recipe">
+            <h3>${meal.strMeal}</h3>
+            <img src="${meal.strMealThumb}" alt="${meal.strMeal}">  
+            <p>${meal.strInstructions}</p>
+            </div>
+            `;
+        });
+        container.innerHTML = html;
+    }
+
+    function searchMeals(){
+        let searchTerm = document.querySelector('input[name="s"]').value;
+        let url = API_URL.replace('{searchTerm}', searchTerm);
+        fetch(url)
+        .then(response => response.json())
+        .then(data => {
+            console.log(data);
+            renderData(data);
+        });
+    }
+</script>
+</head>
+<body>
+    <h1>Entdecke Rezepte</h1>
+    <form action="" method="get">
+        <p>Suche nach Rezepten:</p>
+        <input type="text" name="s" value="">
+        <input type="submit" value="Rezept anzeigen" onclick="searchMeals(); return false;">
+    </form>
+    <div id="container"></div>
+</body>
+</html>
