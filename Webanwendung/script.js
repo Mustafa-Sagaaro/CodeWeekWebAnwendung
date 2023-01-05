@@ -36,3 +36,31 @@ fetch('https://www.themealdb.com/api/json/v1/1/search.php?s=Arrabiata')
   .catch(error => {
     console.log(error);
   });
+
+
+  const API_URL = "https://www.themealdb.com/api/json/v1/1/random.php";
+
+function randomizeRezepte() {
+  fetch(API_URL)
+    .then((response) => {
+      return response.json();
+    })
+    .then((data) => {
+      let rezepte = data.meals;
+      let output = "";
+
+      for (let i = 0; i < rezepte.length; i++) {
+        output += `
+      <h2>Rezept ${i + 1}</h2>
+      <p>Name: ${rezepte[i].strMeal}</p>
+      <p>Kategorie: ${rezepte[i].strCategory}</p>
+      <p>Beschreibung: ${rezepte[i].strInstructions}</p>
+      <img src="${rezepte[i].strMealThumb}" />
+      `;
+      }
+
+      document.getElementById("rezepte").innerHTML = output;
+    });
+}
+
+
