@@ -51,7 +51,7 @@ function randomizeRezepte() {
 
       for (let i = 0; i < rezepte.length; i++) {
         output += `
-      <h2>Rezept ${i + 1}</h2>
+      <h2>Rezept</h2>
       <p>Name: ${rezepte[i].strMeal}</p>
       <p>Kategorie: ${rezepte[i].strCategory}</p>
       <p>Beschreibung: ${rezepte[i].strInstructions}</p>

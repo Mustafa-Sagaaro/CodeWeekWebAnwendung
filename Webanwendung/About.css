@@ -1,0 +1,33 @@
+.center-image {
+	display: block;
+	position: fixed;
+	position: fixed;
+	bottom: 400;
+	right: 510;
+	margin: auto;
+	z-index: 1;
+}
+
+.text-box {
+	background-color: rgb(0, 0, 0);
+	color: white;
+	top: 550;
+	width: 600px;
+	height: 370px;
+	font-size: 20px;
+	line-height: 1.5;
+	text-align: center;
+	border-radius: 20px;
+	display: block;
+	margin: auto;
+	position: fixed;
+	bottom: 110;
+	left: 0;
+	right: 385;
+	font-family: sans-serif;
+}
+
+footer.footer {
+	padding-top: 4rem;
+	padding-bottom: 4rem;
+}

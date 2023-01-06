@@ -38,6 +38,17 @@
         color: #ffffff;
         box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19); 
       }
+
+      footer {
+        bottom: 0;
+        right: 0;
+        left: 50%;
+        text-align: center;
+      }
+      .list-inline-item {
+        position: 50;
+      }
+
     </style>
   </head>
   <body>
@@ -54,8 +65,9 @@
                 <button class="dropbtn" href="index.html">Menu</button>
                 <div class="dropdown-content">
                     <a href="index.html">Home</a>
-                  <a href="entdeckenrezepte.html">Entdecke Rezepte</a>
+                  <a href="Rezepteentdecken.html">Entdecke Rezepte</a>
                   <a href="randomrezepte.html">Random Rezepte</a>
+                  <a href="About.html">About us</a>
                 </div>
               </div>
         </div>
@@ -65,6 +77,39 @@
       <h2>Rezept</h2>
       <p id="rezept"></p>
     </div>
+    <br>
     <button id="randomize" onclick="randomizeRezepte()">Neue Rezepte</button>
+    <br>
   </body>
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
+  <br><br><br><br><br><br><br><br><br><br><br><br><br><br>
+  <footer class="footer bg-light">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-6 h-100 text-center text-lg-left my-auto">
+                <ul class="list-inline mb-2">
+                    <li class="list-inline-item"><a href="About.html">About</a></li>
+                    <li class="list-inline-item"><a href="#">Contact</a></li>
+                    <li class="list-inline-item"><a href="#">Terms of Use</a></li>
+                    <li class="list-inline-item"><a href="#">Privacy Policy</a></li>
+                </ul>
+                <p class="text-muted small mb-4 mb-lg-0">&copy; TAA Cookbook 2020. All Rights Reserved.</p>
+            </div>
+            <div class="col-lg-6 h-100 text-center text-lg-right my-auto">
+                <ul class="list-inline mb-0">
+                    <li class="list-inline-item"><a href="#"><i class="fab fa-facebook-f mr-3"></i></a></li>
+                    <li class="list-inline-item"><a href="#"><i class="fab fa-twitter-square mr-3"></i></a></li>
+                    <li class="list-inline-item"><a href="#"><i class="fab fa-instagram mr-3"></i></a></li>
+                    <li class="list-inline-item"><a href="#"><i class="fab fa-youtube mr-3"></i></a></li>
+                    <li class="list-inline-item"><a href="#" target="_blank"><i class="fa fa-envelope mr-3"></i></a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</footer>
 </html>

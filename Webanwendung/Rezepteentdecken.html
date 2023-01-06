@@ -1,13 +1,91 @@
 <!DOCTYPE html>
 <html>
 <head>
+<link rel="stylesheet" href="styles.css">
 <title>Entdecke Rezepte</title>
+
+<style>
+h1 {
+  font-family: "Roboto", sans-serif;
+  font-size: 52px;
+  color: #0099ff;
+  font-weight: bold;
+  padding: 0 20px;
+  text-align: center;
+}
+
+p {
+  font-family: "Open Sans", sans-serif;
+  font-size: 20px;
+  color: #444;
+  line-height: 1.5;
+  margin: 10px 0;
+  text-align: center;
+}
+
+input[type="text"] {
+  font-family: "Open Sans", sans-serif;
+  font-size: 20px;
+  padding: 10px;
+  width: 400px;
+  margin: 0 auto;
+  display: block;
+  border: 2px solid #0099ff;
+  border-radius: 4px;
+}
+
+input[type="submit"] {
+  font-family: "Open Sans", sans-serif;
+  font-size: 20px;
+  padding: 10px;
+  background: #0099ff;
+  color: #fff;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  margin: 0 auto;
+  display: block;
+}
+
+.recipe, .random-recipe, .random-recipe-info {
+  font-family: "Open Sans", sans-serif;
+  font-size: 20px;
+  padding: 10px;
+  border: 2px solid #0099ff;
+  border-radius: 4px;
+  margin: 10px 0;
+  box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.2);
+}
+
+h3 {
+  font-family: "Open Sans", sans-serif;
+  font-size: 24px;
+  font-weight: bold;
+  margin: 10px 0;
+}
+
+img {
+  width: 300px;
+  display: block;
+  margin: 10px auto;
+  border-radius: 4px;
+}
+  </style>
 <script>
     const API_URL = "https://www.themealdb.com/api/json/v1/1/search.php?s={searchTerm}";
 
-    function renderData(data) {
-        const container = document.getElementById('container');
-        let html = '';
+    let randomMealID;
+
+function renderData(data) {
+    const container = document.getElementById('container');
+    let html = '';
+    let searchTerm = document.querySelector('input[name="s"]').value;
+    if (data.meals === null){
+        getRandomMeal().then(randomMeal => {
+            html += `<p>Ein Rezept für "${searchTerm}" ist nicht vorhanden, wie wäre es jedoch mit einem Rezept für ${randomMeal} <button onclick="showMoreInfo()">Mehr Informationen</button></p>`;
+            container.innerHTML = html;
+        });
+    } else {
         data.meals.forEach(meal => {
             html += `
             <div class="recipe">
@@ -17,9 +95,44 @@
             </div>
             `;
         });
-        container.innerHTML = html;
     }
+    container.innerHTML = html;
+}
 
+// Funktion, um ein zufälliges Rezept zu holen
+async function getRandomMeal() {
+    let randomMeal;
+    await fetch("https://www.themealdb.com/api/json/v1/1/random.php")
+    .then(response => response.json())
+    .then(data => {
+        randomMealID = data.meals[0].idMeal;
+        randomMeal = `
+        <div class="random-recipe">
+        <h3>${data.meals[0].strMeal}</h3>
+        <img src="${data.meals[0].strMealThumb}" alt="${data.meals[0].strMeal}">
+        </div>
+        `;
+    });
+
+    return randomMeal;
+}
+
+// Funktion, um mehr Informationen zu einem Rezept anzuzeigen
+function showMoreInfo() {
+    fetch(`https://www.themealdb.com/api/json/v1/1/lookup.php?i=${randomMealID}`)
+    .then(response => response.json())
+    .then(data => {
+        let info = data.meals[0];
+        let html = `
+        <div class="random-recipe-info">
+        <h3>${info.strMeal}</h3>
+        <img src="${info.strMealThumb}" alt="${info.strMeal}">
+        <p>${info.strInstructions}</p>
+        </div>
+        `;
+        container.innerHTML = html;
+    });
+}
     function searchMeals(){
         let searchTerm = document.querySelector('input[name="s"]').value;
         let url = API_URL.replace('{searchTerm}', searchTerm);
@@ -33,12 +146,65 @@
 </script>
 </head>
 <body>
+    <nav class="navbar navbar-light bg-light static-top">
+        <div class="container">
+            <a class="navbar-brand" href="#!"><img src="img/Logo.png" alt="Logo" style="width: 200px;margin-left: -10px;" /></a>
+            <form class="form-inline d-flex justify-content-center md-form form-sm active-cyan-2 mt-2 w-500">
+                <input class="form-control form-control-sm mr-3" type="text" placeholder="Search"
+                    aria-label="Search" style="width: 500px;">
+                <button class="btn btn-primary" type="submit">Search</button>
+            </form>
+
+            <div class="dropdown">
+                <button class="dropbtn" href="index.html">Menu</button>
+                <div class="dropdown-content">
+                    <a href="index.html">Home</a>
+                  <a href="Rezepteentdecken.html">Entdecke Rezepte</a>
+                  <a href="randomrezepte.html">Random Rezepte</a>
+                  <a href="About.html">About us</a>
+
+                </div>
+              </div>
+        </div>
+    </nav>
     <h1>Entdecke Rezepte</h1>
     <form action="" method="get">
         <p>Suche nach Rezepten:</p>
         <input type="text" name="s" value="">
+        <br>
         <input type="submit" value="Rezept anzeigen" onclick="searchMeals(); return false;">
     </form>
     <div id="container"></div>
 </body>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br><br><br><br><br><br><br><br><br><br><br><br>
+<footer class="footer bg-light">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-6 h-100 text-center text-lg-left my-auto">
+                <ul class="list-inline mb-2">
+                    <li class="list-inline-item"><a href="About.html">About</a></li>
+                    <li class="list-inline-item"><a href="#">Contact</a></li>
+                    <li class="list-inline-item"><a href="#">Terms of Use</a></li>
+                    <li class="list-inline-item"><a href="#">Privacy Policy</a></li>
+                </ul>
+                <p class="text-muted small mb-4 mb-lg-0">&copy; TAA Cookbook 2020. All Rights Reserved.</p>
+            </div>
+            <div class="col-lg-6 h-100 text-center text-lg-right my-auto">
+                <ul class="list-inline mb-0">
+                    <li class="list-inline-item"><a href="#"><i class="fab fa-facebook-f mr-3"></i></a></li>
+                    <li class="list-inline-item"><a href="#"><i class="fab fa-twitter-square mr-3"></i></a></li>
+                    <li class="list-inline-item"><a href="#"><i class="fab fa-instagram mr-3"></i></a></li>
+                    <li class="list-inline-item"><a href="#"><i class="fab fa-youtube mr-3"></i></a></li>
+                    <li class="list-inline-item"><a href="#" target="_blank"><i class="fa fa-envelope mr-3"></i></a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</footer>
 </html>
